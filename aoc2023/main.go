@@ -14,6 +14,8 @@ func main() {
 	ex2 := flag.Bool("e2", false, "-e2 to run example 2")
 	part2 := flag.Bool("p2", false, "-p2 to pass part2 flag to binary (may or may not support)")
 
+	debug := flag.Bool("debug", false, "--debug to enable debug logging.")
+
 	day := flag.Int("d", 1, "-d X for day X")
 	flag.Parse()
 
@@ -33,6 +35,12 @@ func main() {
 		filePath = filepath.Join(dayPath, "example1.txt")
 	} else if *ex2 {
 		filePath = filepath.Join(dayPath, "example2.txt")
+	}
+
+	if *debug {
+		os.Setenv("LOG_LEVEL", "DEBUG")
+	} else {
+		os.Setenv("LOG_LEVEL", "INFO")
 	}
 
 	data, err := os.ReadFile(filePath)
