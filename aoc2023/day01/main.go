@@ -2,11 +2,11 @@ package main
 
 import (
 	"bufio"
-	"fmt"
-	"log"
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/mikehelmick/adventofcode/aoc2023/pkg/logging"
 )
 
 var (
@@ -69,6 +69,7 @@ func lastDigit(s string, m map[string]string) string {
 }
 
 func main() {
+	log := logging.DefaultLogger()
 	scanner := bufio.NewScanner(os.Stdin)
 
 	part1 := 0
@@ -87,17 +88,17 @@ func main() {
 			part1 += v
 		}
 
-		//fmt.Printf("%v -> %v\n", line, p2)
+		log.Debugf("%v -> %v", line, p2)
 		p2v, err := strconv.Atoi(p2)
 		if err != nil {
-			panic(fmt.Errorf("unable to parse %q input %q, err: %v", p2, line, err))
+			log.Panicf("unable to parse %q input %q, err: %v", p2, line, err)
 		}
 		part2 += p2v
 	}
 	if err := scanner.Err(); err != nil {
-		log.Println(err)
+		log.Errorw("io error", "error", err)
 	}
 
-	fmt.Printf("part1: %v\n", part1)
-	fmt.Printf("part2: %v\n", part2)
+	log.Infow("part1", "answer", part1)
+	log.Infow("part2", "answer", part2)
 }
