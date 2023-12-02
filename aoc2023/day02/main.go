@@ -9,6 +9,8 @@ import (
 	"strings"
 
 	"github.com/mikehelmick/adventofcode/aoc2023/pkg/logging"
+	"github.com/mikehelmick/go-functional/maps"
+	"github.com/mikehelmick/go-functional/slice"
 )
 
 // Show is an individual set of cubes you were shown.
@@ -37,37 +39,28 @@ type Game struct {
 
 // Power is for part 2, the fewest stones of each color multiplied together.
 func (g *Game) Power() int {
-	f := g.Fewest()
-	p := 1
-	for _, v := range f {
-		p = p * v
-	}
-	return p
+	return slice.FoldL(maps.ToSlice(g.Fewest()), 1,
+		func(v int, acc int) int {
+			return v * acc
+		})
 }
 
 // Fewest is the fewest of each color stone that makes the game still possible.
 func (g *Game) Fewest() map[string]int {
-	rtn := make(map[string]int)
-	for _, s := range g.Shows {
-		for color, count := range s.Cubes {
-			if count > rtn[color] {
-				rtn[color] = count
+	return slice.FoldL(g.Shows, map[string]int{},
+		func(s Show, rtn map[string]int) map[string]int {
+			for color, count := range s.Cubes {
+				if count > rtn[color] {
+					rtn[color] = count
+				}
 			}
-		}
-	}
-	return rtn
+			return rtn
+		})
 }
 
 // Possible says if a game is possible w/ the given amount of cubes.
 func (g *Game) Possible(bag map[string]int) bool {
-	log := logging.DefaultLogger()
-	for i, s := range g.Shows {
-		if !s.Possible(bag) {
-			log.Debugw("game not possible", "game", g.ID, "show", i, "data", g.Shows)
-			return false
-		}
-	}
-	return true
+	return slice.All(g.Shows, func(s Show) bool { return s.Possible(bag) })
 }
 
 func (g *Game) String() string {
@@ -130,26 +123,20 @@ func main() {
 	}
 
 	// Part one, find which games are possible w/ this number of cubes.
-	bag := map[string]int{
-		"red":   12,
-		"green": 13,
-		"blue":  14,
-	}
-	part1 := 0
-	for _, g := range games {
-		if g.Possible(bag) {
-			part1 += g.ID
+	bag := map[string]int{"red": 12, "green": 13, "blue": 14}
+	part1 := slice.FoldL(games, 0, func(game *Game, acc int) int {
+		if game.Possible(bag) {
+			return acc + game.ID
 		}
-	}
-
+		return acc
+	})
 	log.Infow("part1", "answer", part1)
 
 	// part 2
-	part2 := 0
-	for _, g := range games {
-		log.Debugw("fewest", "game", g.ID, "fewest", g.Fewest())
-		part2 += g.Power()
-	}
+	part2 := slice.FoldL(games, 0,
+		func(g *Game, acc int) int {
+			return acc + g.Power()
+		})
 	log.Infow("part2", "answer", part2)
 
 	if err := scanner.Err(); err != nil {
