@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mikehelmick/adventofcode/aoc2023/pkg/logging"
+	"github.com/mikehelmick/adventofcode/pkg/logging"
 	"github.com/mikehelmick/go-functional/maps"
 	"github.com/mikehelmick/go-functional/slice"
 )

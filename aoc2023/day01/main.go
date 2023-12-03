@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/mikehelmick/adventofcode/aoc2023/pkg/logging"
+	"github.com/mikehelmick/adventofcode/pkg/logging"
 )
 
 var (
