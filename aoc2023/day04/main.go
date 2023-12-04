@@ -104,6 +104,7 @@ func main() {
 	cards := make([]*Card, 0)
 	cardMap := make(map[int]*Card)
 	copies := make(map[int]int)
+	part1 := 0
 	for scanner.Scan() {
 		line := scanner.Text()
 		if line == "" {
@@ -114,12 +115,9 @@ func main() {
 		cards = append(cards, card)
 		cardMap[card.ID] = card
 		copies[card.ID] = 1
+		part1 += card.Points()
 	}
 
-	part1 := 0
-	for _, c := range cards {
-		part1 += c.Points()
-	}
 	log.Infow("answer", "part1", part1)
 
 	cardCount := len(cards)
