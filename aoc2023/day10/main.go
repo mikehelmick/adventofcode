@@ -8,25 +8,25 @@ import (
 
 	"github.com/mikehelmick/adventofcode/pkg/logging"
 	"github.com/mikehelmick/adventofcode/pkg/mathaid"
-	. "github.com/mikehelmick/adventofcode/pkg/twod"
+	"github.com/mikehelmick/adventofcode/pkg/twod"
 )
 
-var connections = map[string][]*Pos{
-	"|": {NewPos(-1, 0), NewPos(1, 0)},
-	"-": {NewPos(0, -1), NewPos(0, 1)},
-	"L": {NewPos(-1, 0), NewPos(0, 1)},
-	"J": {NewPos(-1, 0), NewPos(0, -1)},
-	"7": {NewPos(1, 0), NewPos(0, -1)},
-	"F": {NewPos(1, 0), NewPos(0, 1)},
+var connections = map[string][]*twod.Pos{
+	"|": {twod.NewPos(-1, 0), twod.NewPos(1, 0)},
+	"-": {twod.NewPos(0, -1), twod.NewPos(0, 1)},
+	"L": {twod.NewPos(-1, 0), twod.NewPos(0, 1)},
+	"J": {twod.NewPos(-1, 0), twod.NewPos(0, -1)},
+	"7": {twod.NewPos(1, 0), twod.NewPos(0, -1)},
+	"F": {twod.NewPos(1, 0), twod.NewPos(0, 1)},
 	".": {},
-	"S": {NewPos(-1, 0), NewPos(0, -1)}, // my starting input is a J
+	"S": {twod.NewPos(-1, 0), twod.NewPos(0, -1)}, // my starting input is a J
 	// You'd have to change this to the correct character for your input or examples.
 }
 
-func findStart(grid []string) *Pos {
+func findStart(grid []string) *twod.Pos {
 	for r, row := range grid {
 		if c := strings.Index(row, "S"); c >= 0 {
-			return NewPos(r, c)
+			return twod.NewPos(r, c)
 		}
 	}
 	panic("no start found")
@@ -34,7 +34,7 @@ func findStart(grid []string) *Pos {
 
 // does a BFS from the starting point to find the farthest point in the loop.
 func findFurthest(grid []string, dist [][]int) int {
-	validFunc := func(p *Pos) bool {
+	validFunc := func(p *twod.Pos) bool {
 		return p.Row >= 0 && p.Col >= 0 &&
 			p.Row < len(grid) && p.Col < len(grid[0])
 	}
@@ -44,11 +44,11 @@ func findFurthest(grid []string, dist [][]int) int {
 	maxSetDist := 0
 	dist[start.Row][start.Col] = 0
 	distance := 0
-	wave := []*Pos{start}
+	wave := []*twod.Pos{start}
 
 	for len(wave) > 0 {
 		distance++
-		next := make([]*Pos, 0)
+		next := make([]*twod.Pos, 0)
 		for _, from := range wave {
 			for _, cand := range from.Follow(validFunc, connections[grid[from.Row][from.Col:from.Col+1]]) {
 				if dist[cand.Row][cand.Col] < 0 {
