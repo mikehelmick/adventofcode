@@ -73,6 +73,18 @@ func (p *Pos) Equals(o *Pos) bool {
 	return p.Row == o.Row && p.Col == o.Col
 }
 
+func (p *Pos) Follow(f ValidFunc, adj []*Pos) []*Pos {
+	neighbors := make([]*Pos, 0, len(adj))
+	for _, d := range adj {
+		n := p.Clone()
+		n.Add(d)
+		if f(n) {
+			neighbors = append(neighbors, n)
+		}
+	}
+	return neighbors
+}
+
 func (p *Pos) Neighbors(f ValidFunc) []*Pos {
 	neighbors := make([]*Pos, 0, len(Dirs))
 	for _, d := range Dirs {
