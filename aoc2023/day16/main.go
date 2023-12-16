@@ -46,7 +46,7 @@ func (l *Light) Move() *Light {
 	}
 }
 
-func Print(g Grid, wf []*Light, e [][]bool) {
+func Print(g Grid, wf []*Light, e map[string]bool) {
 	m := make(map[string]*Light)
 	for _, k := range wf {
 		m[k.Position.String()] = k
@@ -54,9 +54,10 @@ func Print(g Grid, wf []*Light, e [][]bool) {
 
 	for r, row := range g {
 		for c, col := range row {
-			if l, ok := m[fmt.Sprintf("{%v,%v}", r, c)]; ok {
+			key := fmt.Sprintf("{%v,%v}", r, c)
+			if l, ok := m[key]; ok {
 				fmt.Printf(l.Direction)
-			} else if e[r][c] {
+			} else if e[key] {
 				fmt.Printf("#")
 			} else {
 				fmt.Print(col)
@@ -79,7 +80,7 @@ func shootLasers(g Grid, e map[string]bool, start *Light) {
 
 	for len(waveFront) > 0 {
 		// for cool animations, uncomment next line.
-		// Print(g, waveFront, e)
+		//Print(g, waveFront, e)
 		nextWave := make([]*Light, 0)
 		for _, l := range waveFront {
 			// mark space visited
