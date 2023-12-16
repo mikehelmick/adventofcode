@@ -7,6 +7,13 @@ import (
 	"github.com/mikehelmick/adventofcode/pkg/straid"
 )
 
+const (
+	RIGHT = "R"
+	UP    = "U"
+	LEFT  = "L"
+	DOWN  = "D"
+)
+
 var (
 	Dirs = map[string]*Pos{
 		"R": NewPos(0, 1),
