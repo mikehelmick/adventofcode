@@ -1,0 +1,118 @@
+digraph {
+  pr [shape=ellipse]
+jg [shape=invhouse]
+mg [shape=invhouse]
+mq [shape=ellipse]
+db [shape=ellipse]
+dx [shape=ellipse]
+bd [shape=ellipse]
+qj [shape=ellipse]
+xs [shape=ellipse]
+xd [shape=ellipse]
+gb [shape=ellipse]
+nt [shape=invhouse]
+ht [shape=ellipse]
+rh [shape=invhouse]
+sq [shape=ellipse]
+tt [shape=ellipse]
+dh [shape=ellipse]
+rz [shape=ellipse]
+cx [shape=ellipse]
+zq [shape=ellipse]
+jm [shape=invhouse]
+lj [shape=ellipse]
+mp [shape=ellipse]
+dz [shape=ellipse]
+fz [shape=ellipse]
+hj [shape=ellipse]
+broadcaster [shape=star, fillcolor=yellow]
+zc [shape=ellipse]
+pj [shape=ellipse]
+bn [shape=ellipse]
+mr [shape=ellipse]
+mj [shape=ellipse]
+gg [shape=ellipse]
+sh [shape=ellipse]  
+bf [shape=ellipse]  
+hf [shape=invhouse] 
+bm [shape=ellipse]  
+bk [shape=ellipse]  
+pq [shape=ellipse]  
+xf [shape=ellipse]  
+th [shape=invhouse] 
+fx [shape=ellipse]  
+ff [shape=invhouse] 
+xr [shape=ellipse]  
+bq [shape=ellipse]  
+zz [shape=ellipse]  
+gz [shape=ellipse]  
+zs [shape=invhouse] 
+vd [shape=ellipse]  
+vk [shape=ellipse]  
+cv [shape=ellipse]  
+cd [shape=ellipse]  
+zg [shape=ellipse]  
+gd [shape=ellipse]  
+ql [shape=ellipse]  
+lt [shape=ellipse]  
+ds [shape=ellipse]  
+vp [shape=ellipse] 
+pr -> ql
+jg -> mg
+mg -> rx
+mq -> gz, nt
+db -> ff, dz
+dx -> zs, bm
+bd -> nt, lj
+qj -> hj
+xs -> zs, dx
+xd -> nt
+gb -> fx, th
+nt -> ds, hj, ht, rh, qj
+ht -> nt, vp
+rh -> mg
+sq -> th, cd
+tt -> pq
+dh -> sh
+rz -> zc
+cx -> xr, nt
+zq -> tt, th
+jm -> mg
+lj -> nt, cx
+mp -> ff, bq
+dz -> ff, gd
+fz -> bk, th
+hj -> mq
+broadcaster -> gb, ht, vk, zz
+zc -> dh
+pj -> xs
+bn -> fz
+mr -> bf
+mj -> th, sq
+gg -> pj, zs
+sh -> mr, zs
+bf -> zs, gg
+hf -> mg
+bm -> zs
+bk -> zg
+pq -> th, mj
+xf -> ff, db
+th -> bn, gb, tt, hf, bk
+fx -> th, bn
+ff -> vd, bq, pr, vk, ql, jm
+xr -> nt, xd
+bq -> pr
+zz -> rz, zs
+gz -> nt, ds
+zs -> mr, pj, zz, dh, jg, zc, rz
+vd -> xf
+vk -> mp, ff
+cv -> ff
+cd -> th
+zg -> th, zq
+gd -> ff, cv
+ql -> lt
+lt -> ff, vd
+ds -> bd
+vp -> nt, qj
+}
