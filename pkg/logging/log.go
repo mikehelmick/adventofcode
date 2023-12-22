@@ -75,6 +75,10 @@ func NewLogger(level string) *zap.SugaredLogger {
 	return logger.Sugar()
 }
 
+func IsDebug() bool {
+	return os.Getenv("LOG_LEVEL") == levelDebug
+}
+
 func NewLoggerFromEnv() *zap.SugaredLogger {
 	level := os.Getenv("LOG_LEVEL")
 	return NewLogger(level)

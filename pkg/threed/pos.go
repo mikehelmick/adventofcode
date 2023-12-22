@@ -1,6 +1,12 @@
 package threed
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+	"strings"
+
+	"github.com/mikehelmick/go-functional/slice"
+)
 
 var (
 	Adj = []*Pos{
@@ -17,6 +23,19 @@ type Pos struct {
 	X int
 	Y int
 	Z int
+}
+
+func ParsePos(s string) *Pos {
+	parts := strings.Split(s, ",")
+	ints := slice.Map(parts,
+		func(s string) int {
+			i, err := strconv.Atoi(s)
+			if err != nil {
+				panic(err)
+			}
+			return i
+		})
+	return NewPos(ints[0], ints[1], ints[2])
 }
 
 func NewPos(x, y, z int) *Pos {
