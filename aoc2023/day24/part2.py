@@ -1,6 +1,5 @@
 from z3 import Int, Solver, sat
 
-
 solver = Solver()
 x, y, z, vx, vy, vz = map(Int, ('x', 'y', 'z', 'vx', 'vy', 'vz'))
 
@@ -30,7 +29,7 @@ if solver.check() == sat:
   aZ = m.eval(z).as_long()
   ans = aX + aY + aZ
   print(ans)
-  print('answers {aX}, {aY}, {aZ} == {ans}')
+  print(f"answers {aX}, {aY}, {aZ} == {ans}")
 else:
   print("unsat")
 
