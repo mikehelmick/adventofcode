@@ -8,4 +8,7 @@ require (
 	gonum.org/v1/gonum v0.14.0
 )
 
-require go.uber.org/multierr v1.10.0 // indirect
+require (
+	github.com/yourbasic/graph v0.0.0-20210606180040-8ecfec1c2869 // indirect
+	go.uber.org/multierr v1.10.0 // indirect
+)
