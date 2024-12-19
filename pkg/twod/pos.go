@@ -22,6 +22,13 @@ var (
 		"D": NewPos(1, 0),
 	}
 
+	TurnRight = map[string]string{
+		"U": "R",
+		"R": "D",
+		"D": "L",
+		"L": "U",
+	}
+
 	DirArrows = map[string]*Pos{
 		">": NewPos(0, 1),
 		"^": NewPos(-1, 0),
