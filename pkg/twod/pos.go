@@ -29,6 +29,13 @@ var (
 		"V": NewPos(1, 0),
 	}
 
+	Manhattan = []*Pos{
+		{Row: 0, Col: 1},
+		{Row: 1, Col: 0},
+		{Row: 0, Col: -1},
+		{Row: -1, Col: 0},
+	}
+
 	Diags = []*Pos{
 		{Row: 1, Col: 1},
 		{Row: -1, Col: 1},
@@ -90,6 +97,18 @@ func (p *Pos) Equals(o *Pos) bool {
 func (p *Pos) Follow(f ValidFunc, adj []*Pos) []*Pos {
 	neighbors := make([]*Pos, 0, len(adj))
 	for _, d := range adj {
+		n := p.Clone()
+		n.Add(d)
+		if f(n) {
+			neighbors = append(neighbors, n)
+		}
+	}
+	return neighbors
+}
+
+func (p *Pos) ManhattanNeighbors(f ValidFunc) []*Pos {
+	neighbors := make([]*Pos, 0, len(Manhattan))
+	for _, d := range Manhattan {
 		n := p.Clone()
 		n.Add(d)
 		if f(n) {
