@@ -107,7 +107,7 @@ type Corner struct {
 }
 
 func (c *Corner) String() string {
-	return fmt.Sprintf("%s,%s,%s", c.Pos[0], c.Pos[1], c.Pos[2])
+	return fmt.Sprintf("%v,%v,%v", c.Pos[0], c.Pos[1], c.Pos[2])
 }
 
 func NewCorner(p []twod.Pos) *Corner {
