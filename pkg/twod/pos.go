@@ -22,6 +22,13 @@ var (
 		"D": NewPos(1, 0),
 	}
 
+	DirArrows = map[string]*Pos{
+		">": NewPos(0, 1),
+		"^": NewPos(-1, 0),
+		"<": NewPos(0, -1),
+		"V": NewPos(1, 0),
+	}
+
 	Diags = []*Pos{
 		{Row: 1, Col: 1},
 		{Row: -1, Col: 1},
